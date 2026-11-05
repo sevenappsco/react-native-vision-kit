@@ -1,0 +1,29 @@
+{
+  "name": "vision-kit-example",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.ts",
+  "scripts": {
+    "start": "expo start --dev-client",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@sevenapps/vision-kit": "workspace:*",
+    "@sevenapps/vision-kit-camera": "workspace:*",
+    "expo": "~58.0.23",
+    "expo-asset": "~58.0.20",
+    "expo-build-properties": "~58.0.12",
+    "expo-status-bar": "~58.0.4",
+    "react": "19.3.0",
+    "react-native": "0.88.1",
+    "react-native-nitro-image": "^0.15.2",
+    "react-native-nitro-modules": "0.37.1",
+    "react-native-vision-camera": "^5.2.4"
+  },
+  "devDependencies": {
+    "@types/react": "~19.3.0",
+    "typescript": "~6.0.3"
+  }
+}

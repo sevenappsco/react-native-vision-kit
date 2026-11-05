@@ -1,0 +1,23 @@
+packages:
+  - "packages/*"
+  - "example"
+
+# Same linker as the SevenApps monorepo so autolinking/pod paths behave the same.
+nodeLinker: hoisted
+autoInstallPeers: true
+
+overrides:
+  # Nitro < 0.37 doesn't install its JSI bindings on RN 0.88 (same override as the monorepo).
+  # 0.37.2 adds cpp/views/ReactNativeCore.hpp, which breaks the cxxreact clang module when RN is
+  # built from source (jserrorhandler/ErrorUtils.h not found). The monorepo resolves 0.37.1.
+  react-native-nitro-modules: 0.37.1
+
+allowBuilds:
+  "@parcel/watcher": false
+  unrs-resolver: false
+  esbuild: false
+
+# Copied from the SevenApps monorepo: nitrogen quoted-include collisions under useFrameworks: dynamic.
+patchedDependencies:
+  "react-native-vision-camera@5.2.4": patches/react-native-vision-camera@5.2.4.patch
+  "react-native-nitro-image@0.15.2": patches/react-native-nitro-image@0.15.2.patch

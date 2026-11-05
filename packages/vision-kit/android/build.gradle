@@ -1,0 +1,31 @@
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+group = 'expo.modules.visionkit'
+version = '0.1.0'
+
+android {
+  namespace "expo.modules.visionkit"
+  defaultConfig {
+    versionCode 1
+    versionName "0.1.0"
+  }
+  lintOptions {
+    abortOnError false
+  }
+}
+
+dependencies {
+  // Text recognition v2, bundled models (same set as the monorepo's infinitered patch)
+  implementation 'com.google.mlkit:text-recognition:16.0.1'
+  implementation 'com.google.mlkit:text-recognition-chinese:16.0.1'
+  implementation 'com.google.mlkit:text-recognition-devanagari:16.0.1'
+  implementation 'com.google.mlkit:text-recognition-japanese:16.0.1'
+  implementation 'com.google.mlkit:text-recognition-korean:16.0.1'
+  // Face detection, bundled model
+  implementation 'com.google.mlkit:face-detection:16.1.7'
+  // On-device translation (models downloaded at runtime)
+  implementation 'com.google.mlkit:translate:17.0.3'
+}

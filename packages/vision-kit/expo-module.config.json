@@ -1,0 +1,13 @@
+{
+  "platforms": ["apple", "android"],
+  "apple": {
+    "modules": ["VisionKitTextModule", "VisionKitTranslateModule", "VisionKitFaceModule"]
+  },
+  "android": {
+    "modules": [
+      "expo.modules.visionkit.VisionKitTextModule",
+      "expo.modules.visionkit.VisionKitTranslateModule",
+      "expo.modules.visionkit.VisionKitFaceModule"
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "expo": {
+    "name": "VisionKit Example",
+    "slug": "vision-kit-example",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "bundleIdentifier": "com.sevenapps.visionkit.example",
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSCameraUsageDescription": "The example app detects faces in the camera preview."
+      }
+    },
+    "android": {
+      "package": "com.sevenapps.visionkit.example",
+      "permissions": [
+        "android.permission.CAMERA"
+      ],
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      }
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "dynamic",
+            "buildReactNativeFromSource": true,
+            "deploymentTarget": "16.4"
+          },
+          "android": {
+            "minSdkVersion": 31,
+            "compileSdkVersion": 37,
+            "targetSdkVersion": 36,
+            "buildToolsVersion": "37.0.0",
+            "kotlinVersion": "2.4.0"
+          }
+        }
+      ]
+    ]
+  }
+}

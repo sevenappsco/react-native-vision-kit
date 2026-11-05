@@ -1,0 +1,156 @@
+diff --git a/nitrogen/generated/ios/NitroImage-Swift-Cxx-Bridge.hpp b/nitrogen/generated/ios/NitroImage-Swift-Cxx-Bridge.hpp
+index 9b216f617a26a5683ec7ed61685a15926dcca2ad..a407d78a5fd7a9601a15bd3fae9bd2434c83a8a4 100644
+--- a/nitrogen/generated/ios/NitroImage-Swift-Cxx-Bridge.hpp
++++ b/nitrogen/generated/ios/NitroImage-Swift-Cxx-Bridge.hpp
+@@ -59,9 +59,17 @@ namespace NitroImage { class HybridNitroImageViewSpec_cxx; }
+ #include "HybridImageUtilsSpec.hpp"
+ #include "HybridNitroImageViewSpec.hpp"
+ #include "ImageFormat.hpp"
++#if __has_include(<NitroImage/PixelFormat.hpp>)
++#include <NitroImage/PixelFormat.hpp>
++#else
+ #include "PixelFormat.hpp"
++#endif
+ #include "RawPixelData.hpp"
++#if __has_include(<NitroImage/ResizeMode.hpp>)
++#include <NitroImage/ResizeMode.hpp>
++#else
+ #include "ResizeMode.hpp"
++#endif
+ #include <NitroModules/ArrayBuffer.hpp>
+ #include <NitroModules/ArrayBufferHolder.hpp>
+ #include <NitroModules/Promise.hpp>
+diff --git a/nitrogen/generated/ios/NitroImage-Swift-Cxx-Umbrella.hpp b/nitrogen/generated/ios/NitroImage-Swift-Cxx-Umbrella.hpp
+index 50d09b094705effd1bccab92bcce0f4c626a3358..7c297d11ec21ec8390a3f33e4d3ace6328999267 100644
+--- a/nitrogen/generated/ios/NitroImage-Swift-Cxx-Umbrella.hpp
++++ b/nitrogen/generated/ios/NitroImage-Swift-Cxx-Umbrella.hpp
+@@ -43,9 +43,17 @@ namespace margelo::nitro::image { enum class ResizeMode; }
+ #include "HybridImageUtilsSpec.hpp"
+ #include "HybridNitroImageViewSpec.hpp"
+ #include "ImageFormat.hpp"
++#if __has_include(<NitroImage/PixelFormat.hpp>)
++#include <NitroImage/PixelFormat.hpp>
++#else
+ #include "PixelFormat.hpp"
++#endif
+ #include "RawPixelData.hpp"
++#if __has_include(<NitroImage/ResizeMode.hpp>)
++#include <NitroImage/ResizeMode.hpp>
++#else
+ #include "ResizeMode.hpp"
++#endif
+ #include <NitroModules/ArrayBuffer.hpp>
+ #include <NitroModules/Promise.hpp>
+ #include <NitroModules/Result.hpp>
+diff --git a/nitrogen/generated/ios/c++/HybridImageFactorySpecSwift.hpp b/nitrogen/generated/ios/c++/HybridImageFactorySpecSwift.hpp
+index 5a2f94da5a887a0bb6409cbfea7e471a6221d20e..66bc2c318bf39e87c471ea50fc2ea568f201bb6b 100644
+--- a/nitrogen/generated/ios/c++/HybridImageFactorySpecSwift.hpp
++++ b/nitrogen/generated/ios/c++/HybridImageFactorySpecSwift.hpp
+@@ -36,7 +36,11 @@ namespace margelo::nitro::image { enum class ImageFormat; }
+ #include "RawPixelData.hpp"
+ #include <NitroModules/ArrayBuffer.hpp>
+ #include <NitroModules/ArrayBufferHolder.hpp>
++#if __has_include(<NitroImage/PixelFormat.hpp>)
++#include <NitroImage/PixelFormat.hpp>
++#else
+ #include "PixelFormat.hpp"
++#endif
+ #include "EncodedImageData.hpp"
+ #include "ImageFormat.hpp"
+ 
+diff --git a/nitrogen/generated/ios/c++/HybridImageLoaderFactorySpecSwift.hpp b/nitrogen/generated/ios/c++/HybridImageLoaderFactorySpecSwift.hpp
+index 97de55785c64c2146ab17fa19d895c3dda759a78..2bdd62f46b93bb7625002ef3dc4f3c3b30125fa6 100644
+--- a/nitrogen/generated/ios/c++/HybridImageLoaderFactorySpecSwift.hpp
++++ b/nitrogen/generated/ios/c++/HybridImageLoaderFactorySpecSwift.hpp
+@@ -31,7 +31,11 @@ namespace margelo::nitro::image { enum class ImageFormat; }
+ #include "RawPixelData.hpp"
+ #include <NitroModules/ArrayBuffer.hpp>
+ #include <NitroModules/ArrayBufferHolder.hpp>
++#if __has_include(<NitroImage/PixelFormat.hpp>)
++#include <NitroImage/PixelFormat.hpp>
++#else
+ #include "PixelFormat.hpp"
++#endif
+ #include "EncodedImageData.hpp"
+ #include "ImageFormat.hpp"
+ 
+diff --git a/nitrogen/generated/ios/c++/HybridImageSpecSwift.hpp b/nitrogen/generated/ios/c++/HybridImageSpecSwift.hpp
+index 665ca2541694b950659830819fdf0ac627105b54..1d964c2e87fa1d4af672116115c6765a0b3dfc96 100644
+--- a/nitrogen/generated/ios/c++/HybridImageSpecSwift.hpp
++++ b/nitrogen/generated/ios/c++/HybridImageSpecSwift.hpp
+@@ -28,7 +28,11 @@ namespace margelo::nitro::image { class HybridImageSpec; }
+ #include "RawPixelData.hpp"
+ #include <NitroModules/ArrayBuffer.hpp>
+ #include <NitroModules/ArrayBufferHolder.hpp>
++#if __has_include(<NitroImage/PixelFormat.hpp>)
++#include <NitroImage/PixelFormat.hpp>
++#else
+ #include "PixelFormat.hpp"
++#endif
+ #include <optional>
+ #include <NitroModules/Promise.hpp>
+ #include "EncodedImageData.hpp"
+diff --git a/nitrogen/generated/ios/c++/HybridNitroImageViewSpecSwift.hpp b/nitrogen/generated/ios/c++/HybridNitroImageViewSpecSwift.hpp
+index b794f603eff7d9ec503ea56552d78d9eaccdd7db..3aa773826464947da9fbbb19a8d1d3350f3044db 100644
+--- a/nitrogen/generated/ios/c++/HybridNitroImageViewSpecSwift.hpp
++++ b/nitrogen/generated/ios/c++/HybridNitroImageViewSpecSwift.hpp
+@@ -24,7 +24,11 @@ namespace margelo::nitro::image { enum class ResizeMode; }
+ #include "HybridImageLoaderSpec.hpp"
+ #include <variant>
+ #include <optional>
++#if __has_include(<NitroImage/ResizeMode.hpp>)
++#include <NitroImage/ResizeMode.hpp>
++#else
+ #include "ResizeMode.hpp"
++#endif
+ #include <string>
+ 
+ #include "NitroImage-Swift-Cxx-Umbrella.hpp"
+diff --git a/nitrogen/generated/shared/c++/HybridNitroImageViewSpec.hpp b/nitrogen/generated/shared/c++/HybridNitroImageViewSpec.hpp
+index 61e4e7447d445d786860e776bc10137d4ea21e7d..fc7b0d0ce5a1e6c6b54258836ff6e5b5d20bb111 100644
+--- a/nitrogen/generated/shared/c++/HybridNitroImageViewSpec.hpp
++++ b/nitrogen/generated/shared/c++/HybridNitroImageViewSpec.hpp
+@@ -25,7 +25,11 @@ namespace margelo::nitro::image { enum class ResizeMode; }
+ #include "HybridImageLoaderSpec.hpp"
+ #include <variant>
+ #include <optional>
++#if __has_include(<NitroImage/ResizeMode.hpp>)
++#include <NitroImage/ResizeMode.hpp>
++#else
+ #include "ResizeMode.hpp"
++#endif
+ #include <string>
+ 
+ namespace margelo::nitro::image {
+diff --git a/nitrogen/generated/shared/c++/RawPixelData.hpp b/nitrogen/generated/shared/c++/RawPixelData.hpp
+index 449fdce3aed23c9fc1a505cdc1ba76be37b0e118..d6674032d4a85b85286ada694a95a8e65cd76f46 100644
+--- a/nitrogen/generated/shared/c++/RawPixelData.hpp
++++ b/nitrogen/generated/shared/c++/RawPixelData.hpp
+@@ -32,7 +32,11 @@
+ namespace margelo::nitro::image { enum class PixelFormat; }
+ 
+ #include <NitroModules/ArrayBuffer.hpp>
++#if __has_include(<NitroImage/PixelFormat.hpp>)
++#include <NitroImage/PixelFormat.hpp>
++#else
+ #include "PixelFormat.hpp"
++#endif
+ 
+ namespace margelo::nitro::image {
+ 
+diff --git a/nitrogen/generated/shared/c++/views/HybridNitroImageViewComponent.hpp b/nitrogen/generated/shared/c++/views/HybridNitroImageViewComponent.hpp
+index 0f0ab044aad43f6e8216091c6d98fbdfc7a163d4..1744a30d39a53d6e640d70b54b5a202406177ffe 100644
+--- a/nitrogen/generated/shared/c++/views/HybridNitroImageViewComponent.hpp
++++ b/nitrogen/generated/shared/c++/views/HybridNitroImageViewComponent.hpp
+@@ -22,7 +22,11 @@
+ #include "HybridImageLoaderSpec.hpp"
+ #include <variant>
+ #include <optional>
++#if __has_include(<NitroImage/ResizeMode.hpp>)
++#include <NitroImage/ResizeMode.hpp>
++#else
+ #include "ResizeMode.hpp"
++#endif
+ #include <string>
+ #include "HybridNitroImageViewSpec.hpp"
+ #include <functional>

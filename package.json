@@ -1,0 +1,10 @@
+{
+  "name": "react-native-vision-kit-workspace",
+  "private": true,
+  "packageManager": "pnpm@12.3.4",
+  "scripts": {
+    "build": "pnpm -r --filter './packages/*' build",
+    "typecheck": "pnpm -r typecheck",
+    "specs": "pnpm --filter @sevenapps/vision-kit-camera specs"
+  }
+}

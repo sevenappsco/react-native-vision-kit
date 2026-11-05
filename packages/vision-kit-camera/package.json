@@ -1,0 +1,58 @@
+{
+  "name": "@sevenapps/vision-kit-camera",
+  "version": "0.1.0",
+  "description": "VisionCamera 5 face-detector CameraOutput. Apple Vision on iOS, ML Kit on Android.",
+  "license": "MIT",
+  "author": "SevenApps",
+  "repository": "https://github.com/sevenapps/react-native-vision-kit",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "react-native": "src/index.ts",
+  "source": "src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "react-native": "./src/index.ts",
+      "default": "./lib/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "lib",
+    "nitrogen",
+    "nitro.json",
+    "ios/**/*.swift",
+    "android/build.gradle",
+    "android/gradle.properties",
+    "android/fix-prefab.gradle",
+    "android/CMakeLists.txt",
+    "android/src",
+    "react-native.config.js",
+    "*.podspec",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "specs": "nitrogen --logLevel=\"warning\"",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "keywords": ["react-native", "vision-camera", "face-detection", "nitro"],
+  "devDependencies": {
+    "@types/react": "~19.3.0",
+    "nitrogen": "^0.37.0",
+    "react": "19.3.0",
+    "react-native": "0.88.1",
+    "react-native-nitro-image": "^0.15.2",
+    "react-native-nitro-modules": "^0.37.1",
+    "react-native-vision-camera": "^5.2.4",
+    "typescript": "~6.0.3"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "react-native-nitro-modules": ">=0.37.1",
+    "react-native-vision-camera": ">=5.2.0"
+  }
+}

@@ -1,0 +1,632 @@
+diff --git a/nitrogen/generated/android/kotlin/com/margelo/nitro/camera/views/HybridFrameRendererViewManager.kt b/nitrogen/generated/android/kotlin/com/margelo/nitro/camera/views/HybridFrameRendererViewManager.kt
+index 883c5bfd1528130ea1f55d32bce38be1188f8f2e..f4337064cbbcf42fbea2c5c8b9ec354a43ad8b21 100644
+--- a/nitrogen/generated/android/kotlin/com/margelo/nitro/camera/views/HybridFrameRendererViewManager.kt
++++ b/nitrogen/generated/android/kotlin/com/margelo/nitro/camera/views/HybridFrameRendererViewManager.kt
+@@ -79,9 +79,11 @@ public class HybridFrameRendererViewManager: SimpleViewManager<View>() {
+     holder.lastState = null
+ 
+     @Suppress("USELESS_IS_CHECK")
+-    if (hybridView is RecyclableView) {
++    // Kotlin 2.4 rejects the generated `is` check as impossible; cast through Any (same runtime behavior).
++    val recyclable = (hybridView as Any) as? RecyclableView
++    if (recyclable != null) {
+       // Recycle in it's implementation
+-      hybridView.prepareForRecycle()
++      recyclable.prepareForRecycle()
+ 
+       // Maybe update the view if it changed
+       return hybridView.view
+diff --git a/nitrogen/generated/android/kotlin/com/margelo/nitro/camera/views/HybridPreviewViewManager.kt b/nitrogen/generated/android/kotlin/com/margelo/nitro/camera/views/HybridPreviewViewManager.kt
+index d2a79480d0c5f3d429041f3a698e040ef947856d..1bd830e3f2ba9993fa48fcccd32e59538d430192 100644
+--- a/nitrogen/generated/android/kotlin/com/margelo/nitro/camera/views/HybridPreviewViewManager.kt
++++ b/nitrogen/generated/android/kotlin/com/margelo/nitro/camera/views/HybridPreviewViewManager.kt
+@@ -79,9 +79,11 @@ public class HybridPreviewViewManager: SimpleViewManager<View>() {
+     holder.lastState = null
+ 
+     @Suppress("USELESS_IS_CHECK")
+-    if (hybridView is RecyclableView) {
++    // Kotlin 2.4 rejects the generated `is` check as impossible; cast through Any (same runtime behavior).
++    val recyclable = (hybridView as Any) as? RecyclableView
++    if (recyclable != null) {
+       // Recycle in it's implementation
+-      hybridView.prepareForRecycle()
++      recyclable.prepareForRecycle()
+ 
+       // Maybe update the view if it changed
+       return hybridView.view
+diff --git a/nitrogen/generated/ios/VisionCamera-Swift-Cxx-Bridge.hpp b/nitrogen/generated/ios/VisionCamera-Swift-Cxx-Bridge.hpp
+index d88408e9e046cf336a309a99354548b03828ea4e..1bd17440e443dcbe6478a83d6d5753a8e64066b1 100644
+--- a/nitrogen/generated/ios/VisionCamera-Swift-Cxx-Bridge.hpp
++++ b/nitrogen/generated/ios/VisionCamera-Swift-Cxx-Bridge.hpp
+@@ -308,17 +308,33 @@ namespace VisionCamera { class HybridZoomGestureControllerSpec_cxx; }
+ #include "HybridTapToFocusGestureControllerSpec.hpp"
+ #include "HybridZoomGestureControllerSpec.hpp"
+ #include "InterruptionReason.hpp"
++#if __has_include(<VisionCamera/ListenerSubscription.hpp>)
++#include <VisionCamera/ListenerSubscription.hpp>
++#else
+ #include "ListenerSubscription.hpp"
++#endif
+ #include "MediaType.hpp"
+ #include "MeteringMode.hpp"
++#if __has_include(<VisionCamera/MirrorMode.hpp>)
++#include <VisionCamera/MirrorMode.hpp>
++#else
+ #include "MirrorMode.hpp"
++#endif
+ #include "NativeBuffer.hpp"
+ #include "PhotoContainerFormat.hpp"
+ #include "PhotoFile.hpp"
+ #include "PhotoHDRConstraint.hpp"
++#if __has_include(<VisionCamera/PixelFormat.hpp>)
++#include <VisionCamera/PixelFormat.hpp>
++#else
+ #include "PixelFormat.hpp"
++#endif
+ #include "PixelFormatConstraint.hpp"
++#if __has_include(<VisionCamera/Point.hpp>)
++#include <VisionCamera/Point.hpp>
++#else
+ #include "Point.hpp"
++#endif
+ #include "PreviewImplementationMode.hpp"
+ #include "PreviewResizeMode.hpp"
+ #include "PreviewStabilizationModeConstraint.hpp"
+diff --git a/nitrogen/generated/ios/VisionCamera-Swift-Cxx-Umbrella.hpp b/nitrogen/generated/ios/VisionCamera-Swift-Cxx-Umbrella.hpp
+index 14418805ee6bfbfe686012341fa2503e2752bc97..5334c76d03bcd9ab5801c787c876b9621e4b736a 100644
+--- a/nitrogen/generated/ios/VisionCamera-Swift-Cxx-Umbrella.hpp
++++ b/nitrogen/generated/ios/VisionCamera-Swift-Cxx-Umbrella.hpp
+@@ -241,7 +241,11 @@ namespace margelo::nitro::camera { struct WhiteBalanceTemperatureAndTint; }
+ #include "CameraExtensionType.hpp"
+ #include "CameraOrientation.hpp"
+ #include "CameraOutputConfiguration.hpp"
++#if __has_include(<VisionCamera/CameraPosition.hpp>)
++#include <VisionCamera/CameraPosition.hpp>
++#else
+ #include "CameraPosition.hpp"
++#endif
+ #include "CameraSessionConfiguration.hpp"
+ #include "CameraSessionConnection.hpp"
+ #include "CapturePhotoCallbacks.hpp"
+@@ -300,10 +304,18 @@ namespace margelo::nitro::camera { struct WhiteBalanceTemperatureAndTint; }
+ #include "HybridTapToFocusGestureControllerSpec.hpp"
+ #include "HybridZoomGestureControllerSpec.hpp"
+ #include "InterruptionReason.hpp"
++#if __has_include(<VisionCamera/ListenerSubscription.hpp>)
++#include <VisionCamera/ListenerSubscription.hpp>
++#else
+ #include "ListenerSubscription.hpp"
++#endif
+ #include "MediaType.hpp"
+ #include "MeteringMode.hpp"
++#if __has_include(<VisionCamera/MirrorMode.hpp>)
++#include <VisionCamera/MirrorMode.hpp>
++#else
+ #include "MirrorMode.hpp"
++#endif
+ #include "NativeBuffer.hpp"
+ #include "ObjectOutputOptions.hpp"
+ #include "OrientationSource.hpp"
+@@ -313,9 +325,17 @@ namespace margelo::nitro::camera { struct WhiteBalanceTemperatureAndTint; }
+ #include "PhotoFile.hpp"
+ #include "PhotoHDRConstraint.hpp"
+ #include "PhotoOutputOptions.hpp"
++#if __has_include(<VisionCamera/PixelFormat.hpp>)
++#include <VisionCamera/PixelFormat.hpp>
++#else
+ #include "PixelFormat.hpp"
++#endif
+ #include "PixelFormatConstraint.hpp"
++#if __has_include(<VisionCamera/Point.hpp>)
++#include <VisionCamera/Point.hpp>
++#else
+ #include "Point.hpp"
++#endif
+ #include "PreviewImplementationMode.hpp"
+ #include "PreviewResizeMode.hpp"
+ #include "PreviewStabilizationModeConstraint.hpp"
+diff --git a/nitrogen/generated/ios/c++/HybridCameraCalibrationDataSpecSwift.hpp b/nitrogen/generated/ios/c++/HybridCameraCalibrationDataSpecSwift.hpp
+index 550149e73d56f85affa6b57e12a1a31036e64958..f3a70dcb872d5dba37c60612d2be8cf24883094b 100644
+--- a/nitrogen/generated/ios/c++/HybridCameraCalibrationDataSpecSwift.hpp
++++ b/nitrogen/generated/ios/c++/HybridCameraCalibrationDataSpecSwift.hpp
+@@ -18,7 +18,11 @@ namespace margelo::nitro::camera { struct Size; }
+ namespace margelo::nitro::camera { struct Point; }
+ 
+ #include "Size.hpp"
++#if __has_include(<VisionCamera/Point.hpp>)
++#include <VisionCamera/Point.hpp>
++#else
+ #include "Point.hpp"
++#endif
+ #include <vector>
+ 
+ #include "VisionCamera-Swift-Cxx-Umbrella.hpp"
+diff --git a/nitrogen/generated/ios/c++/HybridCameraControllerSpecSwift.hpp b/nitrogen/generated/ios/c++/HybridCameraControllerSpecSwift.hpp
+index 10ad4e6945462763060e12aff7f6ae0dc0783c71..d2dac01f90ba2ce7ea09712861db9e182f2e3970 100644
+--- a/nitrogen/generated/ios/c++/HybridCameraControllerSpecSwift.hpp
++++ b/nitrogen/generated/ios/c++/HybridCameraControllerSpecSwift.hpp
+@@ -59,7 +59,11 @@ namespace margelo::nitro::camera { struct WhiteBalanceTemperatureAndTint; }
+ #include <vector>
+ #include <NitroModules/Null.hpp>
+ #include <variant>
++#if __has_include(<VisionCamera/ListenerSubscription.hpp>)
++#include <VisionCamera/ListenerSubscription.hpp>
++#else
+ #include "ListenerSubscription.hpp"
++#endif
+ #include <functional>
+ #include "WhiteBalanceTemperatureAndTint.hpp"
+ 
+diff --git a/nitrogen/generated/ios/c++/HybridCameraDeviceFactorySpecSwift.hpp b/nitrogen/generated/ios/c++/HybridCameraDeviceFactorySpecSwift.hpp
+index d1da50f2f325e2b5b2bf27f3cf8c37586f5f2860..7bae77ef3a2e5d1db8e0cb417171768a92053971 100644
+--- a/nitrogen/generated/ios/c++/HybridCameraDeviceFactorySpecSwift.hpp
++++ b/nitrogen/generated/ios/c++/HybridCameraDeviceFactorySpecSwift.hpp
+@@ -25,7 +25,11 @@ namespace margelo::nitro::camera { enum class TargetCameraPosition; }
+ #include "HybridCameraDeviceSpec.hpp"
+ #include <vector>
+ #include <optional>
++#if __has_include(<VisionCamera/ListenerSubscription.hpp>)
++#include <VisionCamera/ListenerSubscription.hpp>
++#else
+ #include "ListenerSubscription.hpp"
++#endif
+ #include <functional>
+ #include <string>
+ #include "HybridCameraExtensionSpec.hpp"
+diff --git a/nitrogen/generated/ios/c++/HybridCameraDeviceSpecSwift.hpp b/nitrogen/generated/ios/c++/HybridCameraDeviceSpecSwift.hpp
+index d8518138ab660b93a9e6c89615fa5046e2060ccb..8ee2b73d31679d08daa2befe094f5d17392216e7 100644
+--- a/nitrogen/generated/ios/c++/HybridCameraDeviceSpecSwift.hpp
++++ b/nitrogen/generated/ios/c++/HybridCameraDeviceSpecSwift.hpp
+@@ -45,11 +45,19 @@ namespace margelo::nitro::camera { class HybridCameraSessionConfigSpec; }
+ 
+ #include <string>
+ #include "DeviceType.hpp"
++#if __has_include(<VisionCamera/CameraPosition.hpp>)
++#include <VisionCamera/CameraPosition.hpp>
++#else
+ #include "CameraPosition.hpp"
++#endif
+ #include <memory>
+ #include "HybridCameraDeviceSpec.hpp"
+ #include <vector>
++#if __has_include(<VisionCamera/PixelFormat.hpp>)
++#include <VisionCamera/PixelFormat.hpp>
++#else
+ #include "PixelFormat.hpp"
++#endif
+ #include "DynamicRange.hpp"
+ #include "DynamicRangeBitDepth.hpp"
+ #include "ColorSpace.hpp"
+diff --git a/nitrogen/generated/ios/c++/HybridCameraFactorySpecSwift.hpp b/nitrogen/generated/ios/c++/HybridCameraFactorySpecSwift.hpp
+index 34d447f05a850cbc2d127e5a0b88698437e4b362..539139d88377478db19c6fd5ff9c8fe3073c8735 100644
+--- a/nitrogen/generated/ios/c++/HybridCameraFactorySpecSwift.hpp
++++ b/nitrogen/generated/ios/c++/HybridCameraFactorySpecSwift.hpp
+@@ -113,7 +113,11 @@ namespace margelo::nitro::camera { class HybridMeteringPointSpec; }
+ #include "HybridCameraDeviceSpec.hpp"
+ #include "CameraOutputConfiguration.hpp"
+ #include <vector>
++#if __has_include(<VisionCamera/MirrorMode.hpp>)
++#include <VisionCamera/MirrorMode.hpp>
++#else
+ #include "MirrorMode.hpp"
++#endif
+ #include "HybridCameraOutputSpec.hpp"
+ #include "FPSConstraint.hpp"
+ #include "VideoStabilizationModeConstraint.hpp"
+@@ -129,7 +133,11 @@ namespace margelo::nitro::camera { class HybridMeteringPointSpec; }
+ #include "TargetDynamicRangeBitDepth.hpp"
+ #include "TargetColorSpace.hpp"
+ #include "TargetColorRange.hpp"
++#if __has_include(<VisionCamera/PixelFormat.hpp>)
++#include <VisionCamera/PixelFormat.hpp>
++#else
+ #include "PixelFormat.hpp"
++#endif
+ #include <optional>
+ #include "HybridCameraDeviceFactorySpec.hpp"
+ #include "HybridCameraPhotoOutputSpec.hpp"
+diff --git a/nitrogen/generated/ios/c++/HybridCameraSessionConfigSpecSwift.hpp b/nitrogen/generated/ios/c++/HybridCameraSessionConfigSpecSwift.hpp
+index 9a674964c6337083478f7accc4732b37f6e3b181..954b0308f96237f27799b0dff6ad8bad1eeed602 100644
+--- a/nitrogen/generated/ios/c++/HybridCameraSessionConfigSpecSwift.hpp
++++ b/nitrogen/generated/ios/c++/HybridCameraSessionConfigSpecSwift.hpp
+@@ -33,7 +33,11 @@ namespace margelo::nitro::camera { enum class AutoFocusSystem; }
+ #include "TargetDynamicRangeBitDepth.hpp"
+ #include "TargetColorSpace.hpp"
+ #include "TargetColorRange.hpp"
++#if __has_include(<VisionCamera/PixelFormat.hpp>)
++#include <VisionCamera/PixelFormat.hpp>
++#else
+ #include "PixelFormat.hpp"
++#endif
+ #include "AutoFocusSystem.hpp"
+ 
+ #include "VisionCamera-Swift-Cxx-Umbrella.hpp"
+diff --git a/nitrogen/generated/ios/c++/HybridCameraSessionSpecSwift.hpp b/nitrogen/generated/ios/c++/HybridCameraSessionSpecSwift.hpp
+index 74b2ed6d666b824db3f6008f561ba957cb740135..72e4553be4fbe91c3684fda5efa848c93f5a2c9f 100644
+--- a/nitrogen/generated/ios/c++/HybridCameraSessionSpecSwift.hpp
++++ b/nitrogen/generated/ios/c++/HybridCameraSessionSpecSwift.hpp
+@@ -72,7 +72,11 @@ namespace margelo::nitro::camera { enum class InterruptionReason; }
+ #include "TargetCameraPosition.hpp"
+ #include <variant>
+ #include "CameraOutputConfiguration.hpp"
++#if __has_include(<VisionCamera/MirrorMode.hpp>)
++#include <VisionCamera/MirrorMode.hpp>
++#else
+ #include "MirrorMode.hpp"
++#endif
+ #include "HybridCameraOutputSpec.hpp"
+ #include "FPSConstraint.hpp"
+ #include "VideoStabilizationModeConstraint.hpp"
+@@ -87,12 +91,20 @@ namespace margelo::nitro::camera { enum class InterruptionReason; }
+ #include "TargetDynamicRangeBitDepth.hpp"
+ #include "TargetColorSpace.hpp"
+ #include "TargetColorRange.hpp"
++#if __has_include(<VisionCamera/PixelFormat.hpp>)
++#include <VisionCamera/PixelFormat.hpp>
++#else
+ #include "PixelFormat.hpp"
++#endif
+ #include <optional>
+ #include "HybridCameraSessionConfigSpec.hpp"
+ #include <functional>
+ #include "CameraSessionConfiguration.hpp"
++#if __has_include(<VisionCamera/ListenerSubscription.hpp>)
++#include <VisionCamera/ListenerSubscription.hpp>
++#else
+ #include "ListenerSubscription.hpp"
++#endif
+ #include <exception>
+ #include "InterruptionReason.hpp"
+ 
+diff --git a/nitrogen/generated/ios/c++/HybridDepthSpecSwift.hpp b/nitrogen/generated/ios/c++/HybridDepthSpecSwift.hpp
+index 94e0a1cfecb7533b7c578f7ee45b1a58f5f8f744..b90b07a2a1ffd49e21cdebd208c641ac1efd0f61 100644
+--- a/nitrogen/generated/ios/c++/HybridDepthSpecSwift.hpp
++++ b/nitrogen/generated/ios/c++/HybridDepthSpecSwift.hpp
+@@ -47,7 +47,11 @@ namespace margelo::nitro::camera { class HybridFrameSpec; }
+ #include <functional>
+ #include "HybridDepthSpec.hpp"
+ #include <NitroModules/Promise.hpp>
++#if __has_include(<VisionCamera/Point.hpp>)
++#include <VisionCamera/Point.hpp>
++#else
+ #include "Point.hpp"
++#endif
+ #include "HybridFrameSpec.hpp"
+ 
+ #include "VisionCamera-Swift-Cxx-Umbrella.hpp"
+diff --git a/nitrogen/generated/ios/c++/HybridFrameSpecSwift.hpp b/nitrogen/generated/ios/c++/HybridFrameSpecSwift.hpp
+index 4fab75f25bfd0ff17051e939a517d15b44dc8f0e..f9662aa52f9551dd7d1891d58ce254279d1e622e 100644
+--- a/nitrogen/generated/ios/c++/HybridFrameSpecSwift.hpp
++++ b/nitrogen/generated/ios/c++/HybridFrameSpecSwift.hpp
+@@ -25,7 +25,11 @@ namespace margelo::nitro::camera { struct NativeBuffer; }
+ // Forward declaration of `Point` to properly resolve imports.
+ namespace margelo::nitro::camera { struct Point; }
+ 
++#if __has_include(<VisionCamera/PixelFormat.hpp>)
++#include <VisionCamera/PixelFormat.hpp>
++#else
+ #include "PixelFormat.hpp"
++#endif
+ #include "CameraOrientation.hpp"
+ #include <vector>
+ #include <optional>
+@@ -35,7 +39,11 @@ namespace margelo::nitro::camera { struct Point; }
+ #include <NitroModules/ArrayBufferHolder.hpp>
+ #include "NativeBuffer.hpp"
+ #include <functional>
++#if __has_include(<VisionCamera/Point.hpp>)
++#include <VisionCamera/Point.hpp>
++#else
+ #include "Point.hpp"
++#endif
+ 
+ #include "VisionCamera-Swift-Cxx-Umbrella.hpp"
+ 
+diff --git a/nitrogen/generated/ios/c++/HybridPreviewViewSpecSwift.hpp b/nitrogen/generated/ios/c++/HybridPreviewViewSpecSwift.hpp
+index 5375fef09aa863f5c249831d6ea234b467ffab24..c38e9c8073a7266f8accd0fe83c29f7a240fadaf 100644
+--- a/nitrogen/generated/ios/c++/HybridPreviewViewSpecSwift.hpp
++++ b/nitrogen/generated/ios/c++/HybridPreviewViewSpecSwift.hpp
+@@ -40,7 +40,11 @@ namespace margelo::nitro::camera { class HybridScannedObjectSpec; }
+ #include "HybridMeteringPointSpec.hpp"
+ #include <NitroImage/HybridImageSpec.hpp>
+ #include <NitroModules/Promise.hpp>
++#if __has_include(<VisionCamera/Point.hpp>)
++#include <VisionCamera/Point.hpp>
++#else
+ #include "Point.hpp"
++#endif
+ #include "HybridScannedObjectSpec.hpp"
+ 
+ #include "VisionCamera-Swift-Cxx-Umbrella.hpp"
+diff --git a/nitrogen/generated/ios/c++/HybridScannedCodeSpecSwift.hpp b/nitrogen/generated/ios/c++/HybridScannedCodeSpecSwift.hpp
+index 9d24c8936780fc27d9bff81cf05a4b4b14621699..7b03304ce8ad49adb6451e38636f75ac95fc732b 100644
+--- a/nitrogen/generated/ios/c++/HybridScannedCodeSpecSwift.hpp
++++ b/nitrogen/generated/ios/c++/HybridScannedCodeSpecSwift.hpp
+@@ -19,7 +19,11 @@ namespace margelo::nitro::camera { class HybridScannedObjectSpecSwift; }
+ 
+ #include <string>
+ #include <optional>
++#if __has_include(<VisionCamera/Point.hpp>)
++#include <VisionCamera/Point.hpp>
++#else
+ #include "Point.hpp"
++#endif
+ #include <vector>
+ #include "HybridScannedObjectSpecSwift.hpp"
+ 
+diff --git a/nitrogen/generated/ios/c++/HybridTapToFocusGestureControllerSpecSwift.hpp b/nitrogen/generated/ios/c++/HybridTapToFocusGestureControllerSpecSwift.hpp
+index 5a8876c48351254f63e869a3588c49a882ba6322..f2f4e17d197643715e4b85ffcb0d645e53eaf800 100644
+--- a/nitrogen/generated/ios/c++/HybridTapToFocusGestureControllerSpecSwift.hpp
++++ b/nitrogen/generated/ios/c++/HybridTapToFocusGestureControllerSpecSwift.hpp
+@@ -19,7 +19,11 @@ namespace margelo::nitro::camera { class HybridMeteringPointSpec; }
+ // Forward declaration of `HybridGestureControllerSpecSwift` to properly resolve imports.
+ namespace margelo::nitro::camera { class HybridGestureControllerSpecSwift; }
+ 
++#if __has_include(<VisionCamera/ListenerSubscription.hpp>)
++#include <VisionCamera/ListenerSubscription.hpp>
++#else
+ #include "ListenerSubscription.hpp"
++#endif
+ #include <functional>
+ #include <memory>
+ #include "HybridMeteringPointSpec.hpp"
+diff --git a/nitrogen/generated/ios/c++/HybridZoomGestureControllerSpecSwift.hpp b/nitrogen/generated/ios/c++/HybridZoomGestureControllerSpecSwift.hpp
+index 5c819028639720b7dbc272935597ac14c451c2b9..e7a533c4569b33f1ebd01bf38a084397982487e4 100644
+--- a/nitrogen/generated/ios/c++/HybridZoomGestureControllerSpecSwift.hpp
++++ b/nitrogen/generated/ios/c++/HybridZoomGestureControllerSpecSwift.hpp
+@@ -17,7 +17,11 @@ namespace margelo::nitro::camera { struct ListenerSubscription; }
+ // Forward declaration of `HybridGestureControllerSpecSwift` to properly resolve imports.
+ namespace margelo::nitro::camera { class HybridGestureControllerSpecSwift; }
+ 
++#if __has_include(<VisionCamera/ListenerSubscription.hpp>)
++#include <VisionCamera/ListenerSubscription.hpp>
++#else
+ #include "ListenerSubscription.hpp"
++#endif
+ #include <functional>
+ #include "HybridGestureControllerSpecSwift.hpp"
+ 
+diff --git a/nitrogen/generated/shared/c++/CameraOutputConfiguration.hpp b/nitrogen/generated/shared/c++/CameraOutputConfiguration.hpp
+index 738a833758acf9299946f8177d87b415cc4c0b11..5501fd38625b7e245563694e7003406776a5ca51 100644
+--- a/nitrogen/generated/shared/c++/CameraOutputConfiguration.hpp
++++ b/nitrogen/generated/shared/c++/CameraOutputConfiguration.hpp
+@@ -33,7 +33,11 @@ namespace margelo::nitro::camera { enum class MirrorMode; }
+ // Forward declaration of `HybridCameraOutputSpec` to properly resolve imports.
+ namespace margelo::nitro::camera { class HybridCameraOutputSpec; }
+ 
++#if __has_include(<VisionCamera/MirrorMode.hpp>)
++#include <VisionCamera/MirrorMode.hpp>
++#else
+ #include "MirrorMode.hpp"
++#endif
+ #include <memory>
+ #include "HybridCameraOutputSpec.hpp"
+ 
+diff --git a/nitrogen/generated/shared/c++/HybridCameraCalibrationDataSpec.hpp b/nitrogen/generated/shared/c++/HybridCameraCalibrationDataSpec.hpp
+index f047aec484dd5634dcbd5790cd8d38902844b8cc..566a54cfb4a0cb249e3253c1d0950b31eb87abde 100644
+--- a/nitrogen/generated/shared/c++/HybridCameraCalibrationDataSpec.hpp
++++ b/nitrogen/generated/shared/c++/HybridCameraCalibrationDataSpec.hpp
+@@ -19,7 +19,11 @@ namespace margelo::nitro::camera { struct Size; }
+ namespace margelo::nitro::camera { struct Point; }
+ 
+ #include "Size.hpp"
++#if __has_include(<VisionCamera/Point.hpp>)
++#include <VisionCamera/Point.hpp>
++#else
+ #include "Point.hpp"
++#endif
+ #include <vector>
+ 
+ namespace margelo::nitro::camera {
+diff --git a/nitrogen/generated/shared/c++/HybridCameraControllerSpec.hpp b/nitrogen/generated/shared/c++/HybridCameraControllerSpec.hpp
+index b0e1bcfc781303802bab39102e1021c46210b38a..16ccc11144939b76eba858116c0f9ce9d4e88f00 100644
+--- a/nitrogen/generated/shared/c++/HybridCameraControllerSpec.hpp
++++ b/nitrogen/generated/shared/c++/HybridCameraControllerSpec.hpp
+@@ -47,7 +47,11 @@ namespace margelo::nitro::camera { struct WhiteBalanceTemperatureAndTint; }
+ #include "CameraControllerConfiguration.hpp"
+ #include "HybridMeteringPointSpec.hpp"
+ #include "FocusOptions.hpp"
++#if __has_include(<VisionCamera/ListenerSubscription.hpp>)
++#include <VisionCamera/ListenerSubscription.hpp>
++#else
+ #include "ListenerSubscription.hpp"
++#endif
+ #include <functional>
+ #include "WhiteBalanceTemperatureAndTint.hpp"
+ 
+diff --git a/nitrogen/generated/shared/c++/HybridCameraDeviceFactorySpec.hpp b/nitrogen/generated/shared/c++/HybridCameraDeviceFactorySpec.hpp
+index 4b30739c8c6a005e64dcd765665e1a85e495240a..852e665ff8297cae98c2eeadce8ee88d28032dde 100644
+--- a/nitrogen/generated/shared/c++/HybridCameraDeviceFactorySpec.hpp
++++ b/nitrogen/generated/shared/c++/HybridCameraDeviceFactorySpec.hpp
+@@ -26,7 +26,11 @@ namespace margelo::nitro::camera { enum class TargetCameraPosition; }
+ #include "HybridCameraDeviceSpec.hpp"
+ #include <vector>
+ #include <optional>
++#if __has_include(<VisionCamera/ListenerSubscription.hpp>)
++#include <VisionCamera/ListenerSubscription.hpp>
++#else
+ #include "ListenerSubscription.hpp"
++#endif
+ #include <functional>
+ #include <string>
+ #include "HybridCameraExtensionSpec.hpp"
+diff --git a/nitrogen/generated/shared/c++/HybridCameraDeviceSpec.hpp b/nitrogen/generated/shared/c++/HybridCameraDeviceSpec.hpp
+index df4ecd4e0b68dd585b73ef96ce5dda9c4796c570..f842cf7b9faee60a3484ec9f6715d564d17a91bb 100644
+--- a/nitrogen/generated/shared/c++/HybridCameraDeviceSpec.hpp
++++ b/nitrogen/generated/shared/c++/HybridCameraDeviceSpec.hpp
+@@ -40,11 +40,19 @@ namespace margelo::nitro::camera { class HybridCameraSessionConfigSpec; }
+ 
+ #include <string>
+ #include "DeviceType.hpp"
++#if __has_include(<VisionCamera/CameraPosition.hpp>)
++#include <VisionCamera/CameraPosition.hpp>
++#else
+ #include "CameraPosition.hpp"
++#endif
+ #include <memory>
+ #include "HybridCameraDeviceSpec.hpp"
+ #include <vector>
++#if __has_include(<VisionCamera/PixelFormat.hpp>)
++#include <VisionCamera/PixelFormat.hpp>
++#else
+ #include "PixelFormat.hpp"
++#endif
+ #include "DynamicRange.hpp"
+ #include "Range.hpp"
+ #include <optional>
+diff --git a/nitrogen/generated/shared/c++/HybridCameraSessionConfigSpec.hpp b/nitrogen/generated/shared/c++/HybridCameraSessionConfigSpec.hpp
+index c1ec3a54fd8139e99cc004db161cf67d308be122..2081741b43d794c3ae0f685e2fd8b0d92be530c8 100644
+--- a/nitrogen/generated/shared/c++/HybridCameraSessionConfigSpec.hpp
++++ b/nitrogen/generated/shared/c++/HybridCameraSessionConfigSpec.hpp
+@@ -25,7 +25,11 @@ namespace margelo::nitro::camera { enum class AutoFocusSystem; }
+ #include <optional>
+ #include "TargetStabilizationMode.hpp"
+ #include "TargetDynamicRange.hpp"
++#if __has_include(<VisionCamera/PixelFormat.hpp>)
++#include <VisionCamera/PixelFormat.hpp>
++#else
+ #include "PixelFormat.hpp"
++#endif
+ #include "AutoFocusSystem.hpp"
+ 
+ namespace margelo::nitro::camera {
+diff --git a/nitrogen/generated/shared/c++/HybridCameraSessionSpec.hpp b/nitrogen/generated/shared/c++/HybridCameraSessionSpec.hpp
+index c7e8cb51f32b9ee8c4cdbb8239c5b2a372e34855..6185ce8fcfba1d00dc097143b69b7d05f85f0640 100644
+--- a/nitrogen/generated/shared/c++/HybridCameraSessionSpec.hpp
++++ b/nitrogen/generated/shared/c++/HybridCameraSessionSpec.hpp
+@@ -31,7 +31,11 @@ namespace margelo::nitro::camera { enum class InterruptionReason; }
+ #include "CameraSessionConnection.hpp"
+ #include "CameraSessionConfiguration.hpp"
+ #include <optional>
++#if __has_include(<VisionCamera/ListenerSubscription.hpp>)
++#include <VisionCamera/ListenerSubscription.hpp>
++#else
+ #include "ListenerSubscription.hpp"
++#endif
+ #include <functional>
+ #include <exception>
+ #include "InterruptionReason.hpp"
+diff --git a/nitrogen/generated/shared/c++/HybridDepthSpec.hpp b/nitrogen/generated/shared/c++/HybridDepthSpec.hpp
+index 90df0f9ab4b40f9f9b773acf639b5b737914c145..000bd6114d75ec685e825f3597d7523155f57e3b 100644
+--- a/nitrogen/generated/shared/c++/HybridDepthSpec.hpp
++++ b/nitrogen/generated/shared/c++/HybridDepthSpec.hpp
+@@ -44,7 +44,11 @@ namespace margelo::nitro::camera { class HybridFrameSpec; }
+ #include "NativeBuffer.hpp"
+ #include "HybridDepthSpec.hpp"
+ #include <NitroModules/Promise.hpp>
++#if __has_include(<VisionCamera/Point.hpp>)
++#include <VisionCamera/Point.hpp>
++#else
+ #include "Point.hpp"
++#endif
+ #include "HybridFrameSpec.hpp"
+ 
+ namespace margelo::nitro::camera {
+diff --git a/nitrogen/generated/shared/c++/HybridFrameSpec.hpp b/nitrogen/generated/shared/c++/HybridFrameSpec.hpp
+index 5e9919658dce92d2cf66ac05d8c8785faa1b9d4d..400f940fbce2aba26cf806beb9197408a8a0b5bb 100644
+--- a/nitrogen/generated/shared/c++/HybridFrameSpec.hpp
++++ b/nitrogen/generated/shared/c++/HybridFrameSpec.hpp
+@@ -24,7 +24,11 @@ namespace margelo::nitro::camera { struct NativeBuffer; }
+ // Forward declaration of `Point` to properly resolve imports.
+ namespace margelo::nitro::camera { struct Point; }
+ 
++#if __has_include(<VisionCamera/PixelFormat.hpp>)
++#include <VisionCamera/PixelFormat.hpp>
++#else
+ #include "PixelFormat.hpp"
++#endif
+ #include "CameraOrientation.hpp"
+ #include <vector>
+ #include <optional>
+@@ -32,7 +36,11 @@ namespace margelo::nitro::camera { struct Point; }
+ #include "HybridFramePlaneSpec.hpp"
+ #include <NitroModules/ArrayBuffer.hpp>
+ #include "NativeBuffer.hpp"
++#if __has_include(<VisionCamera/Point.hpp>)
++#include <VisionCamera/Point.hpp>
++#else
+ #include "Point.hpp"
++#endif
+ 
+ namespace margelo::nitro::camera {
+ 
+diff --git a/nitrogen/generated/shared/c++/HybridPreviewViewSpec.hpp b/nitrogen/generated/shared/c++/HybridPreviewViewSpec.hpp
+index d3fa93a033f105a9c0c0d88efd57fb0ce39fd508..815e6b877f661ec855c04cc242eb3e73679a6ffb 100644
+--- a/nitrogen/generated/shared/c++/HybridPreviewViewSpec.hpp
++++ b/nitrogen/generated/shared/c++/HybridPreviewViewSpec.hpp
+@@ -41,7 +41,11 @@ namespace margelo::nitro::camera { class HybridScannedObjectSpec; }
+ #include "HybridMeteringPointSpec.hpp"
+ #include <NitroImage/HybridImageSpec.hpp>
+ #include <NitroModules/Promise.hpp>
++#if __has_include(<VisionCamera/Point.hpp>)
++#include <VisionCamera/Point.hpp>
++#else
+ #include "Point.hpp"
++#endif
+ #include "HybridScannedObjectSpec.hpp"
+ 
+ namespace margelo::nitro::camera {
+diff --git a/nitrogen/generated/shared/c++/HybridScannedCodeSpec.hpp b/nitrogen/generated/shared/c++/HybridScannedCodeSpec.hpp
+index d532737e429334d6e97db79e690d7c0d7305b9df..35857441f0622dd212091227785bacb37c6bed51 100644
+--- a/nitrogen/generated/shared/c++/HybridScannedCodeSpec.hpp
++++ b/nitrogen/generated/shared/c++/HybridScannedCodeSpec.hpp
+@@ -20,7 +20,11 @@ namespace margelo::nitro::camera { class HybridScannedObjectSpec; }
+ 
+ #include <string>
+ #include <optional>
++#if __has_include(<VisionCamera/Point.hpp>)
++#include <VisionCamera/Point.hpp>
++#else
+ #include "Point.hpp"
++#endif
+ #include <vector>
+ #include <memory>
+ #include "HybridScannedObjectSpec.hpp"
+diff --git a/nitrogen/generated/shared/c++/HybridTapToFocusGestureControllerSpec.hpp b/nitrogen/generated/shared/c++/HybridTapToFocusGestureControllerSpec.hpp
+index 06c0e259ca2506a5f4868de5cacdae42f37495d1..3d46536bf45348cd55f110f79589e130d434ff1d 100644
+--- a/nitrogen/generated/shared/c++/HybridTapToFocusGestureControllerSpec.hpp
++++ b/nitrogen/generated/shared/c++/HybridTapToFocusGestureControllerSpec.hpp
+@@ -20,7 +20,11 @@ namespace margelo::nitro::camera { class HybridMeteringPointSpec; }
+ // Forward declaration of `HybridGestureControllerSpec` to properly resolve imports.
+ namespace margelo::nitro::camera { class HybridGestureControllerSpec; }
+ 
++#if __has_include(<VisionCamera/ListenerSubscription.hpp>)
++#include <VisionCamera/ListenerSubscription.hpp>
++#else
+ #include "ListenerSubscription.hpp"
++#endif
+ #include <memory>
+ #include "HybridMeteringPointSpec.hpp"
+ #include <functional>
+diff --git a/nitrogen/generated/shared/c++/HybridZoomGestureControllerSpec.hpp b/nitrogen/generated/shared/c++/HybridZoomGestureControllerSpec.hpp
+index 783b459199bf22aaee195fc6b9bff76dfc3d4361..3e43db8886100163586b8237ab1a2a4fc534ea6b 100644
+--- a/nitrogen/generated/shared/c++/HybridZoomGestureControllerSpec.hpp
++++ b/nitrogen/generated/shared/c++/HybridZoomGestureControllerSpec.hpp
+@@ -18,7 +18,11 @@ namespace margelo::nitro::camera { struct ListenerSubscription; }
+ // Forward declaration of `HybridGestureControllerSpec` to properly resolve imports.
+ namespace margelo::nitro::camera { class HybridGestureControllerSpec; }
+ 
++#if __has_include(<VisionCamera/ListenerSubscription.hpp>)
++#include <VisionCamera/ListenerSubscription.hpp>
++#else
+ #include "ListenerSubscription.hpp"
++#endif
+ #include <functional>
+ #include <memory>
+ #include "HybridGestureControllerSpec.hpp"
+diff --git a/nitrogen/generated/shared/c++/PixelFormatConstraint.hpp b/nitrogen/generated/shared/c++/PixelFormatConstraint.hpp
+index 016b1912fc3c8ab0e81071014b79410a18f8076d..6d4181317a290794dd8931728f0e81d0175dbaef 100644
+--- a/nitrogen/generated/shared/c++/PixelFormatConstraint.hpp
++++ b/nitrogen/generated/shared/c++/PixelFormatConstraint.hpp
+@@ -31,7 +31,11 @@
+ // Forward declaration of `PixelFormat` to properly resolve imports.
+ namespace margelo::nitro::camera { enum class PixelFormat; }
+ 
++#if __has_include(<VisionCamera/PixelFormat.hpp>)
++#include <VisionCamera/PixelFormat.hpp>
++#else
+ #include "PixelFormat.hpp"
++#endif
+ 
+ namespace margelo::nitro::camera {
+ 

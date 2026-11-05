@@ -1,0 +1,18 @@
+{
+  "$schema": "https://nitro.margelo.com/nitro.schema.json",
+  "cxxNamespace": ["visionkitcamera"],
+  "ios": {
+    "iosModuleName": "SevenAppsVisionKitCamera"
+  },
+  "android": {
+    "androidNamespace": ["visionkitcamera"],
+    "androidCxxLibName": "SevenAppsVisionKitCamera"
+  },
+  "autolinking": {
+    "VKFaceDetectorFactory": {
+      "ios": { "language": "swift", "implementationClassName": "HybridVKFaceDetectorFactory" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridVKFaceDetectorFactory" }
+    }
+  },
+  "ignorePaths": ["**/node_modules", "lib"]
+}
