@@ -4,6 +4,7 @@ import { Platform, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View }
 import * as Translate from "@sevenappsco/vision-kit/translate";
 import { runChecks, type CheckResult } from "./src/checks";
 import { FaceCameraScreen } from "./src/FaceCameraScreen";
+import { ModalSheetRepro } from "./src/ModalSheetRepro";
 
 type Tab = "checks" | "camera";
 
@@ -69,6 +70,7 @@ function ChecksScreen() {
         )}
       </View>
       {!!downloadState && <Text style={styles.detail}>{downloadState}</Text>}
+      {Platform.OS === "ios" && Translate.isTranslationSupported && <ModalSheetRepro />}
       {results.length > 0 && (
         <Text style={styles.summary}>
           {passed} passed · {failed} failed{running ? " · running" : ""}

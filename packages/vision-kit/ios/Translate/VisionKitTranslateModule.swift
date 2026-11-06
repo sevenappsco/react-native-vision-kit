@@ -52,10 +52,12 @@ public final class VisionKitTranslateModule: Module {
 
     // Example-app diagnostic: proves the hidden SwiftUI host hands out a session
     // (works on the simulator, where real translation is unavailable).
-    AsyncFunction("debugHostRoundTrip") { (source: String, target: String, prepare: Bool) async throws -> String in
+    AsyncFunction("debugHostRoundTrip") { (source: String, target: String, prepare: Bool, attachToRoot: Bool?) async throws -> String in
       guard #available(iOS 18.0, *) else { throw TranslationUnavailableException() }
+      await MainActor.run { TranslationHost.shared.debugAttachToRoot = attachToRoot ?? false }
       return try await TranslationHost.shared.run(
-        source: Locale.Language(vkCode: source), target: Locale.Language(vkCode: target)
+        source: Locale.Language(vkCode: source), target: Locale.Language(vkCode: target),
+        mayPresentSheet: prepare
       ) { session in
         var report = "session received"
         if #available(iOS 26.0, *) {
@@ -174,6 +176,8 @@ enum AppleTranslation {
   }
 
   /// Shows Apple's download sheet for the pair. Resolves `false` when the user declines.
+  /// Rejects with `ERR_DOWNLOAD_SHEET_NOT_SHOWN` / `ERR_TRANSLATION_SESSION_TIMEOUT`
+  /// when the sheet can't be shown, instead of waiting forever.
   static func download(_ source: String, _ target: String) async throws -> Bool {
     switch await rawStatus(source, target) {
     case .installed: return true
@@ -182,10 +186,14 @@ enum AppleTranslation {
     }
     do {
       try await TranslationHost.shared.run(
-        source: Locale.Language(vkCode: source), target: Locale.Language(vkCode: target)
+        source: Locale.Language(vkCode: source), target: Locale.Language(vkCode: target),
+        mayPresentSheet: true
       ) { session in
         try await session.prepareTranslation()
       }
+    } catch let error as TranslationHostFailure {
+      // The host couldn't get a session or show the sheet: report it, don't pretend the user declined.
+      throw error
     } catch {
       // Dismissing the sheet throws a generic "Unable to Translate" (observed on
       // iOS 18.6), not a CancellationError, so the error can't tell a decline apart
@@ -237,6 +245,8 @@ enum AppleTranslation {
         }
       }
       return out
+    } catch let error as TranslationHostFailure {
+      throw error
     } catch {
       if #available(iOS 26.0, *), TranslationError.notInstalled ~= error {
         throw ModelNotDownloadedException("\(source) → \(target)")

@@ -44,6 +44,15 @@ export const TranslateErrorCode = {
   /** iOS: deleting languages has no API. */
   Unsupported: "ERR_UNSUPPORTED",
   Failed: "ERR_TRANSLATION_FAILED",
+  /**
+   * iOS: Apple's download sheet couldn't be presented (for example another
+   * sheet or alert was mid-presentation). Nothing was downloaded; retry later.
+   */
+  DownloadSheetNotShown: "ERR_DOWNLOAD_SHEET_NOT_SHOWN",
+  /** iOS: Apple Translation didn't hand out a session in time. Retry later. */
+  SessionTimeout: "ERR_TRANSLATION_SESSION_TIMEOUT",
+  /** iOS: the app has no key window to host the Translation session. */
+  NoWindow: "ERR_TRANSLATION_NO_WINDOW",
 } as const;
 
 /** iOS ≥ 18 or Android. When false, use online translation. */
@@ -94,6 +103,12 @@ export async function isLanguageDownloaded(code: string): Promise<boolean> {
 /**
  * Download the models for a pair. iOS shows one system sheet for both languages
  * and resolves `false` if the user dismisses it. Android downloads silently.
+ *
+ * iOS presents the sheet over the top-most screen, so it works from inside
+ * modals. If the sheet can't be presented it rejects with
+ * `ERR_DOWNLOAD_SHEET_NOT_SHOWN` (or `ERR_TRANSLATION_SESSION_TIMEOUT`) within
+ * a few seconds instead of hanging. Once the sheet is up, the promise waits for
+ * the user.
  */
 export async function downloadLanguagePair(source: string, target: string): Promise<boolean> {
   assertSupported();

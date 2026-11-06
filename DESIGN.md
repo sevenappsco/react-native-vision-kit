@@ -201,12 +201,25 @@ What these constraints mean in practice:
 | D. Keep ML Kit Translate on iOS | 16.4 | ML Kit | ML Kit | Defeats the goal (GoogleMLKit pods). |
 
 **Hidden SwiftUI host.** A 1×1, alpha 0.01 `UIHostingController` is added as
-a child of the key window's root view controller. It holds a
+a child of the **top-most presented** view controller (root →
+`presentedViewController` chain, skipping ones being dismissed), and moved on
+every request when that changes. Apple's sheet is presented from there: under a
+view controller that is already presenting something (an RN `<Modal>`, a modal
+route) UIKit drops or misplaces the sheet. 0.1.1 attached to the root VC, and
+`downloadLanguagePair` from a modal hung forever on device (fixed in 0.1.2). It holds a
 `.translationTask(configuration)` modifier. Each request sets a new
 `Configuration` (or calls `invalidate()`) and awaits the closure. The closure
 runs `prepareTranslation()` or `translations(from:)` and resumes a stored
 continuation. Requests are serialized, matching aitranslate's `runSerialized`.
 The session is never used outside its closure, as Apple requires.
+
+Watchdogs, so a request never hangs: the `.translationTask` closure must fire
+within 8 s (`ERR_TRANSLATION_SESSION_TIMEOUT`), and a download whose sheet
+hasn't appeared above the host after 5 s is rejected
+(`ERR_DOWNLOAD_SHEET_NOT_SHOWN`). Once the sheet is up there is no timeout: it
+waits for the user. Verified on the iOS 18.6 simulator from no modal, an RN
+`<Modal>`, a modal over a modal and under an alert (the example's
+`ModalSheetRepro`), and the watchdog by forcing 0.1.1's root attach.
 
 ### API (close to fast-mlkit-translate-text, but with BCP-47 codes instead of English names)
 

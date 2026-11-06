@@ -1,6 +1,6 @@
 {
   "name": "@sevenappsco/vision-kit-camera",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "VisionCamera 5 face-detector CameraOutput. Apple Vision on iOS, ML Kit on Android.",
   "license": "MIT",
   "author": "SevenApps",

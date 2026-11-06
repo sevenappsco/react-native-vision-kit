@@ -157,7 +157,10 @@ export async function runChecks(onResult: (r: CheckResult) => void): Promise<voi
           const [report, msHost] = await timed(() =>
             Promise.race([
               native.debugHostRoundTrip("en", "es", prepare),
-              new Promise<string>((_, reject) => setTimeout(() => reject(new Error("timeout after 15s")), 15000)),
+              // prepareTranslation waits while Apple's sheet is up: tap Done on it.
+              new Promise<string>((_, reject) =>
+                setTimeout(() => reject(new Error("no result after 60s (tap Done on Apple's sheet)")), 60000),
+              ),
             ]),
           );
           push({ name, status: report.startsWith("session received") ? "pass" : "fail", detail: report, ms: msHost });
