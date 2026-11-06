@@ -4,7 +4,7 @@
   "description": "On-device OCR, offline translation and face detection. Apple Vision/Translation on iOS, Google ML Kit on Android.",
   "license": "MIT",
   "author": "SevenApps",
-  "repository": "https://github.com/sevenapps/react-native-vision-kit",
+  "repository": "https://github.com/sevenappsco/react-native-vision-kit",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "react-native": "src/index.ts",

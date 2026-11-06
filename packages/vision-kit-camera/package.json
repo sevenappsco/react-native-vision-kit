@@ -4,7 +4,7 @@
   "description": "VisionCamera 5 face-detector CameraOutput. Apple Vision on iOS, ML Kit on Android.",
   "license": "MIT",
   "author": "SevenApps",
-  "repository": "https://github.com/sevenapps/react-native-vision-kit",
+  "repository": "https://github.com/sevenappsco/react-native-vision-kit",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "react-native": "src/index.ts",
@@ -36,9 +36,15 @@
   "scripts": {
     "specs": "nitrogen --logLevel=\"warning\"",
     "build": "tsc -p tsconfig.json",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepare": "tsc -p tsconfig.json"
   },
-  "keywords": ["react-native", "vision-camera", "face-detection", "nitro"],
+  "keywords": [
+    "react-native",
+    "vision-camera",
+    "face-detection",
+    "nitro"
+  ],
   "devDependencies": {
     "@types/react": "~19.3.0",
     "nitrogen": "^0.37.0",

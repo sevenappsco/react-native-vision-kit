@@ -396,12 +396,9 @@ in front of the camera:** Android face output detection results.
 - **Devanagari OCR on iOS:** backend only for hi/mr. *(decided)*
 - **iOS language packs:** Apple's system download sheet, no in-app delete;
   aitranslate's language-pack screen gets iOS-specific behaviour. *(decided)*
-- **Distribution:** public GitHub repo `sevenappsco/react-native-vision-kit`. *(decided)*
-
-## Open decisions
-
-1. **Translation coverage on iOS (product):** 19–22 Apple languages vs. 59
-   ML Kit languages (lists in §4). Accept the backend fallback for the rest
-   on iOS, or keep ML Kit Translate on iOS only for those (which brings the
-   Google pods back)?
-2. Whether to adopt `RecognizeDocumentsRequest` (paragraphs) on iOS 26+.
+- **Distribution:** public GitHub repo `sevenappsco/react-native-vision-kit`, published to npm. *(decided)*
+- **iOS translation coverage:** languages Apple doesn't support fall back to the
+  backend on iOS. ML Kit stays off iOS: it ships only through CocoaPods, which
+  conflicts with the Expo 58 + SPM move. *(decided)*
+- **Paragraphs on iOS 26:** adopt `RecognizeDocumentsRequest` for block
+  grouping on iOS 26+, keeping the heuristic below 26. *(decided, not yet implemented)*
