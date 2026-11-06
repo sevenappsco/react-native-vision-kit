@@ -29,6 +29,12 @@ pnpm --filter @sevenappsco/vision-kit-camera specs   # re-run nitrogen after edi
 cd example && npx expo prebuild && npx expo run:ios   # or run:android
 ```
 
+Before publishing, run `pnpm check:pack`. It packs each package, extracts the
+tarball and lints the podspec from it with CocoaPods' linter. The example app
+links the workspace source, so it can't catch problems that only appear in the
+packed `package.json` (0.1.0 shipped `repository` as `{ type, url }`, which broke
+`pod install`). CI runs the same check on every push.
+
 The example mirrors the monorepo build settings: `useFrameworks: "dynamic"`,
 `buildReactNativeFromSource: true`, iOS 16.4, compileSdk 37 / minSdk 31.
 

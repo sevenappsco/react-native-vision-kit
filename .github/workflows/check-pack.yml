@@ -1,0 +1,21 @@
+name: Packed podspecs
+
+# Lints the podspecs from the packed npm tarballs (what consumers install),
+# not the workspace source. See scripts/check-packed-podspecs.sh.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check-pack:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 26
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check:pack

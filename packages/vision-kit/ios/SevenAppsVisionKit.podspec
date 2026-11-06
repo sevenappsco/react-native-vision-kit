@@ -1,6 +1,8 @@
 require 'json'
 
 package = JSON.parse(File.read(File.join(__dir__, '..', 'package.json')))
+# npm/pnpm pack normalize "repository" to { type, url }; the source tree has a plain string.
+repository = package['repository'].is_a?(Hash) ? package['repository']['url'] : package['repository']
 
 Pod::Spec.new do |s|
   s.name           = 'SevenAppsVisionKit'
@@ -10,10 +12,10 @@ Pod::Spec.new do |s|
   s.description    = package['description']
   s.license        = package['license']
   s.author         = package['author']
-  s.homepage       = package['repository']
+  s.homepage       = repository
   s.platforms      = { :ios => '16.4' }
   s.swift_version  = '5.9'
-  s.source         = { git: package['repository'] }
+  s.source         = { git: repository }
   s.static_framework = true
 
   s.dependency 'ExpoModulesCore'
