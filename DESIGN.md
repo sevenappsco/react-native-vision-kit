@@ -389,16 +389,19 @@ in front of the camera:** Android face output detection results.
 4. Vision face requests need CPU compute on the simulator ("Could not create
    inference context"). This is handled with `#if targetEnvironment(simulator)`.
 
+## Decisions
+
+- **iOS minimum:** stays 16.4. Offline translation runs on iOS 18+; 16.4–17
+  users get online (backend) translation. *(decided 2026-11-06)*
+- **Devanagari OCR on iOS:** backend only for hi/mr. *(decided)*
+- **iOS language packs:** Apple's system download sheet, no in-app delete;
+  aitranslate's language-pack screen gets iOS-specific behaviour. *(decided)*
+- **Distribution:** public GitHub repo `sevenappsco/react-native-vision-kit`. *(decided)*
+
 ## Open decisions
 
 1. **Translation coverage on iOS (product):** 19–22 Apple languages vs. 59
-   ML Kit languages. Accept the backend fallback for the other ~39 on iOS, or
-   keep ML Kit Translate on iOS only for those (which brings the Google pods
-   back)?
-2. **iOS minimum:** keep 16.4 with offline translation only on 18+ (current
-   design), or raise aitranslate to 18?
-3. **Devanagari OCR on iOS:** backend only for hi/mr, acceptable?
-4. **Package names / registry:** `@sevenapps/vision-kit` and
-   `@sevenapps/vision-kit-camera`, published to a private registry or consumed
-   from the monorepo (git submodule or vendored workspace)?
-5. Whether to adopt `RecognizeDocumentsRequest` (paragraphs) on iOS 26+.
+   ML Kit languages (lists in §4). Accept the backend fallback for the rest
+   on iOS, or keep ML Kit Translate on iOS only for those (which brings the
+   Google pods back)?
+2. Whether to adopt `RecognizeDocumentsRequest` (paragraphs) on iOS 26+.
