@@ -1,5 +1,5 @@
 {
-  "name": "@sevenapps/vision-kit-camera",
+  "name": "@sevenappsco/vision-kit-camera",
   "version": "0.1.0",
   "description": "VisionCamera 5 face-detector CameraOutput. Apple Vision on iOS, ML Kit on Android.",
   "license": "MIT",

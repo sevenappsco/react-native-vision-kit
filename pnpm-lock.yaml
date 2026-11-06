@@ -118,10 +118,10 @@ importers:
 
   example:
     dependencies:
-      '@sevenapps/vision-kit':
+      '@sevenappsco/vision-kit':
         specifier: workspace:*
         version: link:../packages/vision-kit
-      '@sevenapps/vision-kit-camera':
+      '@sevenappsco/vision-kit-camera':
         specifier: workspace:*
         version: link:../packages/vision-kit-camera
       expo:

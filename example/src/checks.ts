@@ -1,13 +1,13 @@
 import { Asset } from "expo-asset";
 import { Platform } from "react-native";
-import FaceDetection from "@sevenapps/vision-kit/face";
+import FaceDetection from "@sevenappsco/vision-kit/face";
 import {
   getSupportedRecognitionLanguages,
   getSupportedScripts,
   recognizeText,
   type OcrScript,
-} from "@sevenapps/vision-kit/text";
-import * as Translate from "@sevenapps/vision-kit/translate";
+} from "@sevenappsco/vision-kit/text";
+import * as Translate from "@sevenappsco/vision-kit/translate";
 import { requireNativeModule } from "expo";
 
 export type CheckResult = {

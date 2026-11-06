@@ -1,4 +1,4 @@
-# @sevenapps/vision-kit-camera
+# @sevenappsco/vision-kit-camera
 
 Face detector `CameraOutput` for [VisionCamera 5](https://github.com/mrousavy/react-native-vision-camera).
 Apple Vision on iOS (no Google pods), ML Kit face detection on Android.
@@ -6,7 +6,7 @@ A drop-in replacement for `createFaceDetectorOutput` from
 `react-native-vision-camera-face-detector`.
 
 ```ts
-import { createFaceDetectorOutput, type Face } from "@sevenapps/vision-kit-camera";
+import { createFaceDetectorOutput, type Face } from "@sevenappsco/vision-kit-camera";
 ```
 
 Peer dependencies: `react-native-vision-camera` >= 5.2, `react-native-nitro-modules` >= 0.37.1.

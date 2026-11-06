@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Camera, useCameraDevice, useCameraPermission } from "react-native-vision-camera";
-import { createFaceDetectorOutput, type Face } from "@sevenapps/vision-kit-camera";
+import { createFaceDetectorOutput, type Face } from "@sevenappsco/vision-kit-camera";
 
 /** Mirrors skincare's faceScanModal usage of `createFaceDetectorOutput`. */
 export function FaceCameraScreen() {

@@ -1,5 +1,5 @@
 {
-  "name": "@sevenapps/vision-kit",
+  "name": "@sevenappsco/vision-kit",
   "version": "0.1.0",
   "description": "On-device OCR, offline translation and face detection. Apple Vision/Translation on iOS, Google ML Kit on Android.",
   "license": "MIT",

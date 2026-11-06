@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useState } from "react";
 import { Platform, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
-import * as Translate from "@sevenapps/vision-kit/translate";
+import * as Translate from "@sevenappsco/vision-kit/translate";
 import { runChecks, type CheckResult } from "./src/checks";
 import { FaceCameraScreen } from "./src/FaceCameraScreen";
 
@@ -56,7 +56,7 @@ function ChecksScreen() {
   return (
     <ScrollView contentContainerStyle={styles.list}>
       <Text style={styles.title}>
-        @sevenapps/vision-kit · {Platform.OS} {String(Platform.Version)}
+        @sevenappsco/vision-kit · {Platform.OS} {String(Platform.Version)}
       </Text>
       <View style={styles.row}>
         <Pressable testID="run-checks" onPress={run} style={styles.button} disabled={running}>

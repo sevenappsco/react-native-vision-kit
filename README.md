@@ -6,10 +6,10 @@ On-device OCR, offline translation and face detection for the SevenApps React Na
 
 | Package | Kind | Replaces |
 | --- | --- | --- |
-| `@sevenapps/vision-kit/text` | Expo module | `@infinitered/react-native-mlkit-text-recognition` |
-| `@sevenapps/vision-kit/translate` | Expo module | `fast-mlkit-translate-text` |
-| `@sevenapps/vision-kit/face` | Expo module | `@react-native-ml-kit/face-detection` |
-| `@sevenapps/vision-kit-camera` | Nitro module (VisionCamera 5 `CameraOutput`) | `react-native-vision-camera-face-detector` |
+| `@sevenappsco/vision-kit/text` | Expo module | `@infinitered/react-native-mlkit-text-recognition` |
+| `@sevenappsco/vision-kit/translate` | Expo module | `fast-mlkit-translate-text` |
+| `@sevenappsco/vision-kit/face` | Expo module | `@react-native-ml-kit/face-detection` |
+| `@sevenappsco/vision-kit-camera` | Nitro module (VisionCamera 5 `CameraOutput`) | `react-native-vision-camera-face-detector` |
 
 See [DESIGN.md](./DESIGN.md) for the design, platform differences and open decisions.
 
@@ -25,7 +25,7 @@ example/                      Expo SDK 58 app (Checks + Face camera screens)
 
 ```sh
 pnpm install
-pnpm --filter @sevenapps/vision-kit-camera specs   # re-run nitrogen after editing src/specs/*.nitro.ts
+pnpm --filter @sevenappsco/vision-kit-camera specs   # re-run nitrogen after editing src/specs/*.nitro.ts
 cd example && npx expo prebuild && npx expo run:ios   # or run:android
 ```
 
@@ -37,7 +37,7 @@ The example mirrors the monorepo build settings: `useFrameworks: "dynamic"`,
 ```ts
 // aitranslate: OCR
 - import { recognizeText, type Block } from "@infinitered/react-native-mlkit-text-recognition";
-+ import { recognizeText, isScriptSupported, type Block } from "@sevenapps/vision-kit/text";
++ import { recognizeText, isScriptSupported, type Block } from "@sevenappsco/vision-kit/text";
 // getOfflineOcrScript(): return null when !isScriptSupported(script)  (iOS has no devanagari; gains cyrillic/arabic/thai)
 
 // aitranslate: offline translation (BCP-47 codes instead of "English"/"Spanish" names)
@@ -48,12 +48,12 @@ The example mirrors the monorepo build settings: `useFrameworks: "dynamic"`,
 
 // skincare: VisionCamera 5 output (same call)
 - import { createFaceDetectorOutput, type Face } from "react-native-vision-camera-face-detector";
-+ import { createFaceDetectorOutput, type Face } from "@sevenapps/vision-kit-camera";
++ import { createFaceDetectorOutput, type Face } from "@sevenappsco/vision-kit-camera";
 // and drop patches/react-native-vision-camera-face-detector@2.1.0.patch
 
 // faceai
 - import FaceDetection from "@react-native-ml-kit/face-detection";
-+ import FaceDetection from "@sevenapps/vision-kit/face";
++ import FaceDetection from "@sevenappsco/vision-kit/face";
 ```
 
 ## License

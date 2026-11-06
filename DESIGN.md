@@ -9,10 +9,10 @@ PromisesObjC, …) and the missing arm64-simulator slice.
 
 | Replaces | App | New import |
 | --- | --- | --- |
-| `@infinitered/react-native-mlkit-text-recognition` (+ patch) | aitranslate | `@sevenapps/vision-kit/text` |
-| `fast-mlkit-translate-text` | aitranslate | `@sevenapps/vision-kit/translate` |
-| `@react-native-ml-kit/face-detection` | faceai | `@sevenapps/vision-kit/face` |
-| `react-native-vision-camera-face-detector` 2.1.0 (+ patch) | skincare | `@sevenapps/vision-kit-camera` |
+| `@infinitered/react-native-mlkit-text-recognition` (+ patch) | aitranslate | `@sevenappsco/vision-kit/text` |
+| `fast-mlkit-translate-text` | aitranslate | `@sevenappsco/vision-kit/translate` |
+| `@react-native-ml-kit/face-detection` | faceai | `@sevenappsco/vision-kit/face` |
+| `react-native-vision-camera-face-detector` 2.1.0 (+ patch) | skincare | `@sevenappsco/vision-kit-camera` |
 
 Package names are placeholders (see *Open decisions*).
 
@@ -21,11 +21,11 @@ Package names are placeholders (see *Open decisions*).
 ## 1. Packaging: two packages, not one
 
 The preferred design was one package with subpath exports. Text, translation,
-and still-image faces follow it: one **Expo module**, `@sevenapps/vision-kit`,
+and still-image faces follow it: one **Expo module**, `@sevenappsco/vision-kit`,
 with `/text`, `/translate` and `/face`.
 
 The **VisionCamera 5 face output has to be a Nitro module**, so it ships as a
-second package, `@sevenapps/vision-kit-camera`. The reasons are concrete:
+second package, `@sevenappsco/vision-kit-camera`. The reasons are concrete:
 
 1. **VisionCamera 5 accepts only Nitro objects as outputs.** `<Camera outputs={[…]}>`
    takes `CameraOutput`, a Nitro `HybridObject` (`HybridCameraOutputSpec`).
@@ -68,7 +68,7 @@ example/                      Expo SDK 58 app, mirrors the monorepo build settin
 | Expo / RN | SDK 58 / RN 0.88.1, New Architecture | |
 | Nitro | `react-native-nitro-modules` ^0.37.1, `react-native-vision-camera` ^5.2.4 | camera package only |
 
-## 3. `@sevenapps/vision-kit/text`: OCR
+## 3. `@sevenappsco/vision-kit/text`: OCR
 
 ### API (same shape as infinitered's, plus the monorepo patch's `script` argument)
 
@@ -162,7 +162,7 @@ The `fast` level is Latin-only: en fr it de es pt.
 - Block grouping is heuristic on iOS, so block boundaries differ from ML
   Kit's. Line and word text should be equal or better.
 
-## 4. `@sevenapps/vision-kit/translate`: offline translation
+## 4. `@sevenappsco/vision-kit/translate`: offline translation
 
 ### Apple Translation constraints (verified against the iOS 26.5 SDK swiftinterface)
 
@@ -271,7 +271,7 @@ migration and needs a product decision** (see *Open decisions*).
 list/download/delete. No language-id dependency, since aitranslate doesn't use
 `identify`. The `Translator` client is cached per pair and closed on change.
 
-## 5. `@sevenapps/vision-kit/face`: still-image faces (faceai)
+## 5. `@sevenappsco/vision-kit/face`: still-image faces (faceai)
 
 ```ts
 detect(uri: string, options?: {
@@ -284,7 +284,7 @@ detect(uri: string, options?: {
 ```
 
 The shape is that of `@react-native-ml-kit/face-detection`, so faceai only
-changes the import (`import FaceDetection from "@sevenapps/vision-kit/face"`;
+changes the import (`import FaceDetection from "@sevenappsco/vision-kit/face"`;
 `FaceDetection.detect(...)`).
 
 - **iOS:** `VNDetectFaceRectanglesRequest` (rev 3: roll, yaw, pitch) and, when
@@ -304,7 +304,7 @@ changes the import (`import FaceDetection from "@sevenapps/vision-kit/face"`;
     fields are undefined.
 - **Android:** ML Kit `face-detection` 16.1.7, unchanged.
 
-## 6. `@sevenapps/vision-kit-camera`: VisionCamera 5 face output (skincare)
+## 6. `@sevenappsco/vision-kit-camera`: VisionCamera 5 face output (skincare)
 
 ```ts
 createFaceDetectorOutput(options: {

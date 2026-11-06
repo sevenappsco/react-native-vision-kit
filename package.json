@@ -5,6 +5,6 @@
   "scripts": {
     "build": "pnpm -r --filter './packages/*' build",
     "typecheck": "pnpm -r typecheck",
-    "specs": "pnpm --filter @sevenapps/vision-kit-camera specs"
+    "specs": "pnpm --filter @sevenappsco/vision-kit-camera specs"
   }
 }

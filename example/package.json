@@ -10,8 +10,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@sevenapps/vision-kit": "workspace:*",
-    "@sevenapps/vision-kit-camera": "workspace:*",
+    "@sevenappsco/vision-kit": "workspace:*",
+    "@sevenappsco/vision-kit-camera": "workspace:*",
     "expo": "~58.0.23",
     "expo-asset": "~58.0.20",
     "expo-build-properties": "~58.0.12",

@@ -210,7 +210,7 @@ private final class SampleBufferDelegate: NSObject, AVCaptureVideoDataOutputSamp
 }
 
 /// Converts Vision's radians to ML Kit's degrees and sign convention.
-/// Must match `FaceAngles` in @sevenapps/vision-kit (still-image API).
+/// Must match `FaceAngles` in @sevenappsco/vision-kit (still-image API).
 enum FaceAngles {
   static let rollSign: Double = 1
   static let yawSign: Double = 1
